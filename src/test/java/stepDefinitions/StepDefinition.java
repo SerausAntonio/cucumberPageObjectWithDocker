@@ -37,14 +37,18 @@ public class StepDefinition {
     @When("User enters Email as {string} and Password as {string}")
     public void user_enters_email_as_and_password_as(String email, String pass) {
       System.out.println("Email " + email + "    " + pass);
-      driver.findElement(By.cssSelector("input#Email.email.valid")).sendKeys(email);
-      driver.findElement(By.cssSelector("input#Password.password.valid")).sendKeys(pass);
+        driver.findElement(By.id("Email")).clear();
+        driver.findElement(By.id("Password")).clear();
+
+
+        driver.findElement(By.id("Email")).sendKeys(email);
+      driver.findElement(By.id("Password")).sendKeys(pass);
 
     }
     @When("Click on Login")
     public void click_on_login() {
         System.out.println("Click on logout");
-        driver.findElement(By.cssSelector("button#button-1.login-button")).click();
+        driver.findElement(By.cssSelector("button.button-1.login-button")).click();
     }
     @Then("Page Title should be {string}")
     public void page_title_should_be(String title) {
