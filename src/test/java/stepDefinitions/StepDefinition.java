@@ -3,12 +3,15 @@ package stepDefinitions;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.time.Duration;
+import java.util.concurrent.TimeUnit;
 
 import static org.openqa.selenium.remote.Browser.CHROME;
 
@@ -31,7 +34,10 @@ public class StepDefinition {
     @When("User opens URL \"http:\\/\\/admin-demo.nopcommerce.con\\/login")
     public void user_opens_url_http_admin_demo_nopcommerce_con_login() {
         driver.get("https://admin-demo.nopcommerce.com/login");
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(25));
+        String title = "Your store. Login";
         System.out.println(driver.getTitle());
+        Assert.assertEquals(driver.getTitle(),title);
 
     }
     @When("User enters Email as {string} and Password as {string}")
@@ -47,17 +53,19 @@ public class StepDefinition {
     }
     @When("Click on Login")
     public void click_on_login() {
-        System.out.println("Click on logout");
+        System.out.println("Click on login");
         driver.findElement(By.cssSelector("button.button-1.login-button")).click();
     }
     @Then("Page Title should be {string}")
     public void page_title_should_be(String title) {
+        String pageTitle="Dashboard / nopCommerce administration";
         System.out.println(title);
+        Assert.assertEquals(driver.getTitle(),pageTitle);
 
     }
     @When("User click on Log out link")
     public void user_click_on_log_out_link() {
-        driver.findElement(By.cssSelector("a.nav-link")).click();
+        driver.findElement(By.linkText("Logout")).click();
 
     }
     @Then("Close browser")
