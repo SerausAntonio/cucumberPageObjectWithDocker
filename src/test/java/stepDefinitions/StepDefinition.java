@@ -35,17 +35,17 @@ public class StepDefinition {
     }
     @When("User enters Email as {string} and Password as {string}")
     public void user_enters_email_as_and_password_as(String string, String string2) {
-        // Write code here that turns the phrase above into concrete actions
+      System.out.println("Email " + string + "    " + string2);
 
     }
     @When("Click on Login")
     public void click_on_login() {
-        // Write code here that turns the phrase above into concrete actions
+        System.out.println("Click on logout");
 
     }
     @Then("Page Title should be {string}")
     public void page_title_should_be(String string) {
-        // Write code here that turns the phrase above into concrete actions
+        System.out.println(string);
 
     }
     @When("User click on Log out link")
