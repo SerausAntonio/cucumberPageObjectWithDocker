@@ -9,3 +9,7 @@ Feature: Login
     When User click on Log out link
     Then Page Title should be "Your store. Login"
     And Close browser
+
+    Scenario Outline:
+      | email               | passwd    |
+      | admin@yourstore.com | admin     |

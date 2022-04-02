@@ -4,7 +4,7 @@ import io.cucumber.junit.CucumberOptions;
 import org.junit.runner.RunWith;
 
 @RunWith(Cucumber.class)
-@CucumberOptions( features="src//test//Features//Login.feature",
+@CucumberOptions( features="src//features//Login.feature",
         glue = "stepDefinitions")
 public class Runner {
 }
