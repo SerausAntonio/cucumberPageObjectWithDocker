@@ -7,6 +7,8 @@ import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import pageObjects.LoginPage;
 
 import java.net.MalformedURLException;
@@ -51,17 +53,22 @@ public class StepDefinition {
     }
     @Then("Page Title should be {string}")
     public void page_title_should_be(String title) {
-        String pageTitle="Dashboard / nopCommerce administration";
-        Assert.assertEquals(lp.getMePageTitle(),pageTitle);
-
+        Assert.assertEquals(lp.getMePageTitle(),title);
     }
     @When("User click on Log out link")
     public void user_click_on_log_out_link() {
+        WebDriverWait wt = new WebDriverWait(driver, (Duration.ofSeconds(15)));
+        wt.until(ExpectedConditions.elementToBeClickable (By.linkText("Logout")));
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         lp.logMeOut();
     }
     @Then("Close browser")
     public void close_browser() {
-      lp.close_Browser();
+       lp.closeTheBrowser();
 
     }
 }

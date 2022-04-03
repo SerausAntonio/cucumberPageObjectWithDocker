@@ -49,10 +49,10 @@ public class LoginPage {
         }
 
         public String getMePageTitle(){
-
+            System.out.println(driver.getTitle());
             return driver.getTitle();
         }
-        public void close_Browser(){
+        public void closeTheBrowser(){
             driver.quit();
         }
  }
