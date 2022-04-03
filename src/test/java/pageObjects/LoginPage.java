@@ -8,21 +8,23 @@ import org.openqa.selenium.support.PageFactory;
 
 import javax.swing.text.html.CSS;
 
+
 public class LoginPage {
     public RemoteWebDriver driver;
 
     public LoginPage(RemoteWebDriver driver) {
-
+        this.driver = driver;
         PageFactory.initElements(driver, this);
+
     }
 
         @FindBy(id = "Email")
         WebElement txtEmail;
 
-        @FindBy(id="password")
+        @FindBy(id= "Password")
         WebElement txtPassword;
 
-        @FindBy(how = How.CLASS_NAME, using = "button.button-1.login-button")
+        @FindBy(xpath = "//*[@type='submit']")
         WebElement btnLogin;
 
         @FindBy(how=How.LINK_TEXT, using = "Logout")
@@ -31,9 +33,8 @@ public class LoginPage {
         public void logMeIn(String email, String pass){
 
             txtEmail.clear();
-            txtPassword.clear();
-
             txtEmail.sendKeys(email);
+            txtPassword.clear();
             txtPassword.sendKeys(pass);
 
         }
@@ -50,6 +51,9 @@ public class LoginPage {
         public String getMePageTitle(){
 
             return driver.getTitle();
+        }
+        public void close_Browser(){
+            driver.quit();
         }
  }
 
